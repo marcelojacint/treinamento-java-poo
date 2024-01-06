@@ -11,33 +11,37 @@ import com.treinopoo.aluno.Disciplina;
 public class AdministracaoEscolar {
 
 	public static void main(String[] args) {
-
+		
+		//lista de alunos
 		List<Aluno> alunos = new ArrayList<Aluno>();
-
+		
+		//interação para criar objetos alunos
 		for (int contador = 0; contador <= 1; contador++) {
 
 			String nome = JOptionPane.showInputDialog("digite seu nome");
 			String idade = JOptionPane.showInputDialog("digite seu idade");
 			String cpf = JOptionPane.showInputDialog("digite seu cpf");
 			String matricula = JOptionPane.showInputDialog("digite seu matricula");
-
+			//criando um novo aluno
 			Aluno aluno1 = new Aluno();
-
+			//setando as variaveis no objeto aluno
 			aluno1.setNome(nome);
 			aluno1.setIdade(Integer.valueOf(idade));
 			aluno1.setCpf(cpf);
 			aluno1.setMatricula(matricula);
-
+			//deixando a criação de disciplina dinâmica com for
 			for (int contador1 = 1; contador1 <= 2; contador1++) {
+				//criando um objeto disciplina
 				Disciplina disciplina1 = new Disciplina();
-				String disciplina = JOptionPane.showInputDialog("escreva a disciplina" + contador1);
-				String nota = JOptionPane.showInputDialog("escreva a nota" + contador1);
-
+				String disciplina = JOptionPane.showInputDialog("escreva a disciplina " + contador1);
+				String nota = JOptionPane.showInputDialog("escreva a nota " + contador1);
+				//adicionando os dados a disciplina criada
 				disciplina1.setDisciplina(Double.valueOf(disciplina));
 				disciplina1.setNota(Double.valueOf(nota));
-
+				//settando os dados a lista de disciplinas do objeto aluno
 				aluno1.getDisciplinas().add(disciplina1);
 			}
+			//logica para excluir uma disciplina
 			int reposta = JOptionPane.showConfirmDialog(null, "deseja excluir uma disciplina?");
 
 			if (reposta == 0) {

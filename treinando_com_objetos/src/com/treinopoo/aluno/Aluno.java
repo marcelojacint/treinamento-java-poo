@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+import com.treinopoo.constantes.StatusAluno;
+
 public class Aluno {
 
 	private String nome;
@@ -88,11 +90,11 @@ public class Aluno {
 	public String getAvaliarMediaAluno() {
 		if (this.getCalcularMedia() >= 5) {
 			if (this.getCalcularMedia() >= 7)
-				return "aluno aprovado";
+				return StatusAluno.APROVADO;
 			else
-				return "aluno em recuperação";
+				return StatusAluno.RECUPERACAO;
 		} else {
-			return "aluno reprovado";
+			return StatusAluno.REPROVADO;
 		}
 
 	}
