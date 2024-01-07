@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import com.treinopoo.aluno.Aluno;
 import com.treinopoo.aluno.Disciplina;
+import com.treinopoo.constantes.StatusAluno;
 
 public class AdministracaoEscolar {
 
@@ -14,9 +15,13 @@ public class AdministracaoEscolar {
 
 		// lista de alunos
 		List<Aluno> alunos = new ArrayList<Aluno>();
+		//listas para cada aluno aprovado, reprovado ou em recuperação
+		List<Aluno> alunosAprovados = new ArrayList<Aluno>();
+		List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
+		List<Aluno> alunosReprovados = new ArrayList<Aluno>();
 
 		// interação para criar objetos alunos
-		for (int contador = 0; contador <= 1; contador++) {
+		for (int contador = 0; contador <= 2; contador++) {
 
 			String nome = JOptionPane.showInputDialog("digite seu nome");
 			String idade = JOptionPane.showInputDialog("digite seu idade");
@@ -55,36 +60,31 @@ public class AdministracaoEscolar {
 			}
 			alunos.add(aluno1);
 		}
+		//interação for para adicionar em cada lista seus respectivos alunos
 		for (Aluno aluno : alunos) {
-			if (aluno.getNome().equalsIgnoreCase("leno")) {
-				alunos.remove(aluno);
-				break;
+			if (aluno.getAvaliarMediaAluno().equalsIgnoreCase(StatusAluno.APROVADO)) {
+				alunosAprovados.add(aluno);
+
+			} else if (aluno.getAvaliarMediaAluno().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
+				alunosRecuperacao.add(aluno);
+
+			} else {
+				alunosReprovados.add(aluno);
 			}
 		}
-
-		for (int cont = 0; cont < alunos.size(); cont++) {
-			Aluno aluno = alunos.get(cont);
-
-			if (aluno.getNome().equalsIgnoreCase("lulu")) {
-				Aluno novoAluno = new Aluno();
-				novoAluno.setNome("novo aluno");
-
-				Disciplina disciplina = new Disciplina();
-				disciplina.setDisciplina(22);
-				disciplina.setNota(9);
-
-				novoAluno.getDisciplinas().add(disciplina);
-				alunos.set(cont, novoAluno);
-				aluno = alunos.get(cont);
-			}
-
-			System.out.println("aluno " + aluno.getNome());
-			System.out.println("esta com a media " + aluno.getCalcularMedia());
-			System.out.println("foi " + aluno.getAvaliarMediaAluno());
-			System.out.println(aluno.getDisciplinas());
-
+		//lendo cada lista é imprimindo na tela os alunos
+		System.out.println("----------lista de aprovados!!!");
+		for (Aluno aluno : alunosAprovados) {
+			System.out.println(aluno.getNome());
 		}
-
+		System.out.println("----------lista dos em recuperação!!!");
+		for (Aluno aluno : alunosRecuperacao) {
+			System.out.println(aluno.getNome());
+		}
+		System.out.println("----------lista dos reprovados!!!");
+		for (Aluno aluno : alunosReprovados) {
+			System.out.println(aluno.getNome());
+		}
 	}
 
 }
