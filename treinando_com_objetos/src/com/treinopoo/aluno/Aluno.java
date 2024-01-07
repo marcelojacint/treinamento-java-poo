@@ -7,7 +7,6 @@ import java.util.Objects;
 
 import com.treinopoo.constantes.StatusAluno;
 
-
 public class Aluno {
 
 	private String nome;
