@@ -1,6 +1,7 @@
 package com.treinopoo.executavel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -16,9 +17,7 @@ public class AdministracaoEscolar {
 		// lista de alunos
 		List<Aluno> alunos = new ArrayList<Aluno>();
 		//listas para cada aluno aprovado, reprovado ou em recuperação
-		List<Aluno> alunosAprovados = new ArrayList<Aluno>();
-		List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
-		List<Aluno> alunosReprovados = new ArrayList<Aluno>();
+		HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
 
 		// interação para criar objetos alunos
 		for (int contador = 0; contador <= 2; contador++) {
@@ -60,29 +59,33 @@ public class AdministracaoEscolar {
 			}
 			alunos.add(aluno1);
 		}
+		maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
+		maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
+		maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
 		//interação for para adicionar em cada lista seus respectivos alunos
 		for (Aluno aluno : alunos) {
 			if (aluno.getAvaliarMediaAluno().equalsIgnoreCase(StatusAluno.APROVADO)) {
-				alunosAprovados.add(aluno);
+				maps.get(StatusAluno.APROVADO).add(aluno);
 
 			} else if (aluno.getAvaliarMediaAluno().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
-				alunosRecuperacao.add(aluno);
+				maps.get(StatusAluno.RECUPERACAO).add(aluno);
 
 			} else {
-				alunosReprovados.add(aluno);
+				maps.get(StatusAluno.REPROVADO).add(aluno);
 			}
 		}
+		
 		//lendo cada lista é imprimindo na tela os alunos
 		System.out.println("----------lista de aprovados!!!");
-		for (Aluno aluno : alunosAprovados) {
+		for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
 			System.out.println(aluno.getNome());
 		}
 		System.out.println("----------lista dos em recuperação!!!");
-		for (Aluno aluno : alunosRecuperacao) {
+		for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
 			System.out.println(aluno.getNome());
 		}
 		System.out.println("----------lista dos reprovados!!!");
-		for (Aluno aluno : alunosReprovados) {
+		for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
 			System.out.println(aluno.getNome());
 		}
 	}
