@@ -8,20 +8,22 @@ import javax.swing.JOptionPane;
 
 import com.treinopoo.aluno.Aluno;
 import com.treinopoo.aluno.Disciplina;
+import com.treinopoo.aluno.Secretario;
 import com.treinopoo.constantes.StatusAluno;
+import com.treinopoo.interfaces.PermitirAcesso;
 
 public class AdministracaoEscolar {
 
 	public static void main(String[] args) {
-		
-		String senha = JOptionPane.showInputDialog("digite a senha: ");
-		String usuario = JOptionPane.showInputDialog("digite o Usuário: ");
-		
-		if(senha.equalsIgnoreCase("admin")&& usuario.equalsIgnoreCase("admin")) {
-			
+
+		String login = JOptionPane.showInputDialog("digite a senha: ");
+		String senha = JOptionPane.showInputDialog("digite o Usuário: ");
+
+		if (new Secretario().autenticar(login, senha)) {
+
 			// lista de alunos
 			List<Aluno> alunos = new ArrayList<Aluno>();
-			//listas para cada aluno aprovado, reprovado ou em recuperação
+			// listas para cada aluno aprovado, reprovado ou em recuperação
 			HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
 
 			// interação para criar objetos alunos
@@ -67,7 +69,7 @@ public class AdministracaoEscolar {
 			maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
 			maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
 			maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
-			//interação for para adicionar em cada lista seus respectivos alunos
+			// interação for para adicionar em cada lista seus respectivos alunos
 			for (Aluno aluno : alunos) {
 				if (aluno.getAvaliarMediaAluno().equalsIgnoreCase(StatusAluno.APROVADO)) {
 					maps.get(StatusAluno.APROVADO).add(aluno);
@@ -79,8 +81,8 @@ public class AdministracaoEscolar {
 					maps.get(StatusAluno.REPROVADO).add(aluno);
 				}
 			}
-			
-			//lendo cada lista é imprimindo na tela os alunos
+
+			// lendo cada lista é imprimindo na tela os alunos
 			System.out.println("----------lista de aprovados!!!");
 			for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
 				System.out.println(aluno.getNome());
@@ -93,11 +95,10 @@ public class AdministracaoEscolar {
 			for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
 				System.out.println(aluno.getNome());
 			}
-		}else {
+		} else {
 			JOptionPane.showMessageDialog(null, "senha ou ususario inválidos!");
 		}
 
-		
 	}
 
 }

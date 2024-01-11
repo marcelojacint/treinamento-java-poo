@@ -7,13 +7,10 @@ import java.util.Objects;
 
 import com.treinopoo.constantes.StatusAluno;
 
-public class Aluno {
+public class Aluno extends Pessoa{
 
-	private String nome;
-	private int idade;
-	private String cpf;
+	
 	private String matricula;
-
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 	public void setDisciplinas(List<Disciplina> disciplinas) {
@@ -22,6 +19,12 @@ public class Aluno {
 
 	public List<Disciplina> getDisciplinas() {
 		return disciplinas;
+	}
+	public Aluno() {
+		
+	}
+	public Aluno(String nomePadrao) {
+		nome = nomePadrao;
 	}
 
 	public String getNome() {
@@ -98,5 +101,17 @@ public class Aluno {
 		}
 
 	}
-
+	@Override
+	public boolean pessoaMaiorIdade() {
+		
+		return super.pessoaMaiorIdade();
+	}
+	public String mensagemMaiorIdade() {
+		return this.pessoaMaiorIdade() ? "aluno é de maior" : "aluno é de menor";
+	}
+	@Override
+	public double salario() {
+		
+		return 600;
+	}
 }
