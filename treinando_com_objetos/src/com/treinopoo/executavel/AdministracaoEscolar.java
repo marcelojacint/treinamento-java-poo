@@ -16,7 +16,8 @@ import com.treinopoo.interfaces.PermitirAcesso;
 public class AdministracaoEscolar {
 
 	public static void main(String[] args) {
-
+		
+		try {
 		String login = JOptionPane.showInputDialog("digite a senha: ");
 		String senha = JOptionPane.showInputDialog("digite o Usuário: ");
 
@@ -99,7 +100,10 @@ public class AdministracaoEscolar {
 		} else {
 			JOptionPane.showMessageDialog(null, "senha ou ususario inválidos!");
 		}
-
+		}catch(Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,"erro inesperado " + e.getClass().getName());
+		}
 	}
 
 }
