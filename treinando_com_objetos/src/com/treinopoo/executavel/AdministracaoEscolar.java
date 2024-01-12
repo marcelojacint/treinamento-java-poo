@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import com.treinopoo.aluno.Aluno;
 import com.treinopoo.aluno.Disciplina;
 import com.treinopoo.aluno.Secretario;
+import com.treinopoo.classesAuxiliares.AutenticarClasses;
 import com.treinopoo.constantes.StatusAluno;
 import com.treinopoo.interfaces.PermitirAcesso;
 
@@ -19,7 +20,7 @@ public class AdministracaoEscolar {
 		String login = JOptionPane.showInputDialog("digite a senha: ");
 		String senha = JOptionPane.showInputDialog("digite o Usuário: ");
 
-		if (new Secretario(login, senha).Autenticar()) {
+		if (new AutenticarClasses(new Secretario(login, senha)).autenticar()) {
 
 			// lista de alunos
 			List<Aluno> alunos = new ArrayList<Aluno>();
