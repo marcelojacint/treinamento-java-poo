@@ -19,7 +19,7 @@ public class AdministracaoEscolar {
 		String login = JOptionPane.showInputDialog("digite a senha: ");
 		String senha = JOptionPane.showInputDialog("digite o Usuário: ");
 
-		if (new Secretario().autenticar(login, senha)) {
+		if (new Secretario(login, senha).Autenticar()) {
 
 			// lista de alunos
 			List<Aluno> alunos = new ArrayList<Aluno>();
