@@ -1,8 +1,11 @@
 package com.treinopoo.executavel;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 //teste
@@ -11,13 +14,16 @@ import com.treinopoo.aluno.Disciplina;
 import com.treinopoo.aluno.Secretario;
 import com.treinopoo.classesAuxiliares.AutenticarClasses;
 import com.treinopoo.constantes.StatusAluno;
+import com.treinopoo.excecao.ExcecaoProcessarArquivo;
 import com.treinopoo.interfaces.PermitirAcesso;
 
 public class AdministracaoEscolar {
 
 	public static void main(String[] args) {
 		
-		try {
+		try { 
+			
+		lerArquivo();
 		String login = JOptionPane.showInputDialog("digite a senha: ");
 		String senha = JOptionPane.showInputDialog("digite o Usuário: ");
 
@@ -50,7 +56,7 @@ public class AdministracaoEscolar {
 					String nota = JOptionPane.showInputDialog("escreva a nota " + contador1);
 					// adicionando os dados a disciplina criada
 					disciplina1.setDisciplina(Double.valueOf(disciplina));
-					disciplina1.setNota(Double.valueOf(nota));
+					//disciplina1.setNota(Double.valueOf(nota));
 					// settando os dados a lista de disciplinas do objeto aluno
 					aluno1.getDisciplinas().add(disciplina1);
 				}
@@ -100,9 +106,18 @@ public class AdministracaoEscolar {
 		} else {
 			JOptionPane.showMessageDialog(null, "senha ou ususario inválidos!");
 		}
-		}catch(Exception e) {
+		}catch(ExcecaoProcessarArquivo e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null,"erro inesperado " + e.getClass().getName());
+			JOptionPane.showMessageDialog(null, e.getClass().getName());
+		}
+		}
+
+	public static void lerArquivo() throws ExcecaoProcessarArquivo {
+		try {
+			File fil = new File("c://lines.txt");
+			Scanner scanner = new Scanner(fil);
+		} catch (FileNotFoundException e) {
+			throw new ExcecaoProcessarArquivo(e.getMessage());
 		}
 	}
 
